@@ -42,7 +42,7 @@ export default {
   data() {
     return {
       form: {
-        username: '',
+        username: '1',
         password: '',
         remember: false
       },
