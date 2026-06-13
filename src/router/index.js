@@ -9,11 +9,31 @@ const router = createRouter({
       name: 'backendLayout',
       component: BackendLayout,
       children: [
-        // {
-        //   path: '/back/home',
-        //   name: 'home',
-        //   component: () => import('@/views/home/index.vue')
-        // }
+        {
+          path: 'dashboard',
+          name: 'dashboard',
+          component: () => import('@/views/Dashboard.vue'),
+          meta: {
+            title: '数据分析',
+            icon: 'PieChart'
+          }
+        },{
+          path: 'knowledge',
+          name: 'knowledge',
+          component: () => import('@/views/Knowledge.vue'),
+          meta: {
+            title: '知识库',
+            icon: 'Document'
+            }
+          }, {
+          path: 'consultation',
+          name: 'consultation',
+          component: () => import('@/views/Consultation.vue'),
+          meta: {
+            title: '咨询',
+            icon: 'Document'
+          }
+        }
       ]
     }
   ]
