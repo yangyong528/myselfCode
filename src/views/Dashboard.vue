@@ -5,24 +5,33 @@
     <!-- 统计卡片 -->
     <div class="stats-cards">
       <el-card class="stat-card">
-        <div class="stat-icon">📊</div>
-        <div class="stat-info" @click="handleClick('1')">
+        <div class="stat-icon-wrapper bg-pink">
+          <span class="stat-icon">�</span>
+        </div>
+        <div class="stat-content">
+          <div class="stat-title">平均时长</div>
           <div class="stat-value">18051.3</div>
-          <div class="stat-label">平均时长(分钟)</div>
+          <div class="stat-label">分钟</div>
         </div>
       </el-card>
       <el-card class="stat-card">
-        <div class="stat-icon">💬</div>
-        <div class="stat-info">
+        <div class="stat-icon-wrapper bg-blue">
+          <span class="stat-icon">💬</span>
+        </div>
+        <div class="stat-content">
+          <div class="stat-title">总会话数</div>
           <div class="stat-value">8</div>
-          <div class="stat-label">总会话数</div>
+          <div class="stat-label">今日新增: 0</div>
         </div>
       </el-card>
       <el-card class="stat-card">
-        <div class="stat-icon">👥</div>
-        <div class="stat-info">
+        <div class="stat-icon-wrapper bg-green">
+          <span class="stat-icon">👥</span>
+        </div>
+        <div class="stat-content">
+          <div class="stat-title">活跃用户</div>
           <div class="stat-value">2</div>
-          <div class="stat-label">活跃用户</div>
+          <div class="stat-label">今日新增: 0</div>
         </div>
       </el-card>
     </div>
@@ -190,52 +199,96 @@ const handleClick = (index) => {
 }
 </script>
 
-<style scoped>
-.dashboard-container {
-  padding: 20px;
-}
+<style lang="scss" scoped>
+$icon-wrapper-size: 64px;
+$icon-wrapper-radius: 16px;
+$gap: 20px;
+$card-padding: 16px;
 
-.dashboard-container h1 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  font-weight: bold;
+.dashboard-container {
+  padding: $card-padding;
+  
+  h1 {
+    margin-bottom: $gap;
+    font-size: 24px;
+    font-weight: bold;
+  }
 }
 
 .stats-cards {
   display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
+  gap: $gap;
+  margin-bottom: $gap;
 }
 
 .stat-card {
   flex: 1;
+  
+  :deep(.el-card__body) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: $gap;
+    padding: $card-padding;
+  }
+}
+
+.stat-icon-wrapper {
+  width: $icon-wrapper-size;
+  height: $icon-wrapper-size;
+  border-radius: $icon-wrapper-radius;
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
+  flex-shrink: 0;
+  
+  &.bg-pink {
+    background: linear-gradient(135deg, #ff7a85 0%, #ff99ac 100%);
+  }
+  
+  &.bg-blue {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  
+  &.bg-green {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  }
 }
 
 .stat-icon {
-  font-size: 40px;
-}
-
-.stat-info {
-  flex: 1;
-}
-
-.stat-value {
   font-size: 28px;
-  font-weight: bold;
-  color: #303133;
 }
 
-.stat-label {
-  font-size: 14px;
-  color: #909399;
+.stat-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  
+  .stat-title {
+    font-size: 14px;
+    color: #909399;
+    margin-bottom: 4px;
+  }
+  
+  .stat-value {
+    font-size: 28px;
+    font-weight: bold;
+    color: #303133;
+    line-height: 1.2;
+  }
+  
+  .stat-label {
+    font-size: 12px;
+    color: #909399;
+    margin-top: 4px;
+  }
 }
 
 .charts-container {
   display: flex;
-  gap: 20px;
+  gap: $gap;
 }
 
 .chart-card {
